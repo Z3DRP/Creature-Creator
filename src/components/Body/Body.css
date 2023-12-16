@@ -1,0 +1,80 @@
+.left-column {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 25vw;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input {
+    font-size: 14px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 100%;
+    display: flex;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 82, 0.15) 0 2px 4px;
+    background-color: rgba(234, 237, 234, 0.454);
+    color: rgb(33, 61, 117);
+    margin: 0 5px 0 5px;
+}
+  
+.input::placeholder {
+    color: rgb(33, 61, 117);
+}
+
+.button {
+    font-family: Eater;
+    font-size: 16px;
+    width: 100%;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding: 5px;
+    font-weight: bold;
+    margin: 8px;
+    border: 1px solid #edeaea;
+    border-radius: 5px;
+    background-color: rgb(33, 61, 117);
+    color: #edeaea;
+    box-shadow: rgba(0, 0, 82, 0.15) 0 2px 4px;
+    cursor: pointer;
+}
+
+.input-container button:active {
+    background-color: rgba(5, 152, 5, 0.48);
+}
+  
+.input-container button:hover {
+    background-color: rgba(5, 152, 5, 0.48);
+    color: rgb(33, 61, 117);
+} 
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+  
+.form-group label {
+    font-family: GoblinOne;
+    padding-top: 8px;
+    padding-left: 4px;
+    margin: 2px;
+    font-weight: 500;
+}
+  
+.form-group input {
+    padding: 6px;
+}
+
+p {
+  font-weight: 200;
+  font-size: 14px;
+}

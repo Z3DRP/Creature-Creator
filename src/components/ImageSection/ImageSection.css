@@ -1,0 +1,30 @@
+.right-column {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+  
+.image-section {
+    padding: 10px;
+    height: 95%;
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 82, 0.15) 0 2px 4px;
+}
+  
+.image-section img {
+    margin: 1px;
+    min-width: 250px;
+    max-width: 33%;
+    flex-grow: 1;
+}
+
+@media (max-width: 556px) {
+  .image-section img {
+    max-width: 100%;
+  }
+}
