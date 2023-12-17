@@ -4,16 +4,15 @@ import './ImageSection.css';
 const ImageSection = ({
     creatureImage,
     animalOne,
-    animalTwo
+    animalTwo,
+    hasImage
 }) => {
     return (
         <>
             <div className="column right-column">
                 <section className="image-section">
-                {
-                    creatureImage?.map((image, _index) => (
-                    <img key={_index} src={image.url} alt={`Generated of value a ${animalOne} combined with ${animalTwo}`}/>
-                    ))
+                { hasImage && 
+                    (<img className="creature-img" src={creatureImage?.url} alt={`Generated of value a ${animalOne} combined with ${animalTwo}`}/>)
                 }
                 </section>
             </div>

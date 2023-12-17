@@ -17,9 +17,10 @@
 }
   
 .image-section img {
-    margin: 1px;
+    padding: 5px;
+    margin: 10px;
     min-width: 250px;
-    max-width: 33%;
+    max-width: 60%;
     flex-grow: 1;
 }
 

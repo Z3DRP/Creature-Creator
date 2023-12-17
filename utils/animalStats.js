@@ -10,20 +10,31 @@ const generateStats = (animal1, animal2) => {
         stats = {
             height: animal1?.height === undefined && animal2?.height === undefined ? `${getRandomNumber(10)} ft` : getRandomStat(animal1.height, animal2.height),
             weight: animal1?.weight === undefined && animal2?.weight === undefined ?`${getRandomNumber(300)} lbs` : getRandomStat(animal1.weight, animal2.weight),
-            diet: animal1?.diet === undefined && animal2?.diet === undefined ? getRandomDiet() : determineDiet(),
+            diet: animal1?.diet === undefined && animal2?.diet === undefined ? getRandomDiet() : determineDiet(animal1?.diet, animal2?.diet),
             prey: anmlPrey1 === undefined && anmlPrey2 === undefined ? getRandomPrey() : determinePrey(anmlPrey1, anmlPrey2),
             habitat: animal1.habitat === undefined && animal2 === undefined ? getRandomHabitat() : determineHabitat(animal1?.habitat, animal2?.habitat),
             lifespan: animal1?.lifespan === undefined && animal2?.lifespan === undefined ? getRandomLifespan() : calculateLifespan(animal1?.lifespan, animal2?.lifespan)
         }
 
-        return stats;
+    } else {
+        let diet = getRandomDiet();
+        stats = {
+            height: `${getRandomNumber(10)} ft`,
+            weight: `${getRandomNumber(300)} lbs`,
+            diet: diet,
+            prey: getRandomPrey(diet),
+            habitat: getRandomHabitat(),
+            lifespan: getRandomLifespan()
+        }
     }
+
+    return stats;
 }
 
 const getRandomStat = (stat1, stat2) => {
     let stat;
     if (stat1 !== undefined && stat2 !== undefined) {
-        stat = Math.random() + 1 === 1 ? stat1 : stat2;
+        stat = Math.floor(Math.random() * 10) % 2 === 0 ? stat1 : stat2;
     } else {
         stat = stat1 ?? stat2;
     }
@@ -31,12 +42,12 @@ const getRandomStat = (stat1, stat2) => {
 }
 
 const determineDiet = (diet1, diet2) => {
-    return diet1 === diet2 ? diet1 : 'Omnivore';
+    return diet1 === diet2 ? diet1 ?? diet2 : 'Omnivore';
 }
 
 const getRandomDiet = () => {
     let diets = ['Carnivore', 'Herbivore', 'Omnivore'];
-    return diets[Math.round(Math.random() * diets.length)];
+    return diets[Math.round(Math.random() * (diets.length - 1))];
 }
 
 const determinePrey = (prey1, prey2) => {
@@ -49,18 +60,21 @@ const determinePrey = (prey1, prey2) => {
     return preys;
 }
 
-const getRandomPrey = () => {
-    let preys = [
-        'People', 'Big Animals', 'Little Animals', 
-        'Cows', 'Grass', 'Bugs', 'Woodlice', 'Ants', 
-        'Penguins', 'Giraffes', 'Fish', 'Bears', 'Birds',
-        'Seeds', 'Flowers', 'Nuts', 'Berries', 'Hares', 'Lemmings'
-    ];
+const getRandomPrey = (diet) => {
+    let herbPrey = ['Grass', 'Berries', 'Nuts', 'Pine Cones', 'Seaweed', 'Leafs', 'Granola', 'Twigs', 'Rocks', 'Bark', 'Algea', 'Seeds'];
+    let carnPrey = ['People', 'Big Animals', 'Little Animals', 'Cows', 'Ants', 'Woodlice', 'Birds', 'Bugs', 'Fish', 'Giraffes', 'Birds'];
+    let preys = {
+        herbivore: herbPrey,
+        carnivore: carnPrey,
+        omnivore: herbPrey.concat(carnPrey)
+    };
+
+    let food = preys[diet.toLowerCase()];
 
     return [
-        preys[Math.round(Math.random() * preys.length)],
-        preys[Math.round(Math.random() * preys.length)],
-        preys[Math.round(Math.random() * preys.length)]
+        food[Math.round(Math.random() * (food.length - 1))],
+        food[Math.round(Math.random() * (food.length - 1))],
+        food[Math.round(Math.random() * (food.length - 1))]
     ].join(',');
 }
 
@@ -84,9 +98,9 @@ const getRandomHabitat = () => {
         'Sea', 'Costal Waters', 'Dense Jungles', 'Grasslands', 'Costal Mangroves and Riverine Forests'
     ]
     return [
-        habitats[Math.round(Math.random() * habitats.length)],
-        habitats[Math.round(Math.random() * habitats.length)],
-        habitats[Math.round(Math.random() * habitats.length)]
+        habitats[Math.round(Math.random() * (habitats.length - 1))],
+        habitats[Math.round(Math.random() * (habitats.length - 1))],
+        habitats[Math.round(Math.random() * (habitats.length - 1))]
     ].join(',');
 }
 
@@ -114,7 +128,7 @@ const calculateLifespan = (lifespan1, lifespan2) => {
 
         formattedLifespan =`${yearsLow} - ${yearsHi} years`;
     } else {
-        formattedLifespan = lifespan1 != undefined ? lifespan1 : lifespan2;
+        formattedLifespan = lifespan1 !== undefined ? lifespan1 : lifespan2;
     }
 
     return formattedLifespan;
