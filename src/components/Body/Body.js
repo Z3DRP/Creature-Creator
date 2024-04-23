@@ -1,6 +1,6 @@
 import React from 'react';
 import './Body.css';
-
+// zac
 const Body = ({
     animalOne,
     setAnimalOne,
