@@ -74,7 +74,7 @@ const App = () => {
     return new Promise(async (resolve, reject) => {
       try {
         if (firstAnimal !== undefined && secondAnimal !== undefined) {
-          const response = await fetch(`http://localhost:8000/creature/animals?anmlOne=${firstAnimal}&anmlTwo=${secondAnimal}`);
+          const response = await fetch(`http://localhost:8001/creature/animals?anmlOne=${firstAnimal}&anmlTwo=${secondAnimal}`);
           
           const animalData = await response.json();
   
@@ -109,7 +109,7 @@ const App = () => {
     return new Promise(async (resolve, reject) => {
       try {
         if (animalOne !== undefined && animalTwo !== undefined) {
-          const response = await fetch('http://localhost:8000/create', options);
+          const response = await fetch('http://localhost:8001/create', options);
     
           const imageResult = await response.json();
     

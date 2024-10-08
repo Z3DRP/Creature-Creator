@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import generateStats from "./utils/animalStats.js";
-const PORT = 8000;
+const PORT = 8081;
 const app = express();
 app.use(cors());
 app.use(express.json());
